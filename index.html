@@ -1,1 +1,504 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GS MOVEIS</title>
 
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f5f5;
+}
+
+header{
+background:#ff4d6d;
+color:white;
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+}
+
+.logo{
+font-size:24px;
+font-weight:bold;
+}
+
+.carrinho{
+background:white;
+color:#ff4d6d;
+padding:8px 15px;
+border-radius:20px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.banner{
+background:white;
+padding:40px 20px;
+text-align:center;
+}
+
+.banner h1{
+font-size:32px;
+color:#333;
+}
+
+.banner p{
+margin-top:10px;
+color:#666;
+}
+
+.produtos{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+padding:20px;
+}
+
+.card{
+background:white;
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.card img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.card-body{
+padding:15px;
+}
+
+.preco{
+font-size:22px;
+font-weight:bold;
+color:#00a650;
+margin:10px 0;
+}
+
+.btn{
+width:100%;
+border:none;
+padding:12px;
+margin-top:8px;
+cursor:pointer;
+border-radius:8px;
+font-weight:bold;
+}
+
+.btn-carrinho{
+background:#3483fa;
+color:white;
+}
+
+.btn-whats{
+background:#25d366;
+color:white;
+}
+
+footer{
+background:#222;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:30px;
+}
+
+/* CARRINHO */
+#carrinhoLateral{
+position:fixed;
+top:0;
+right:-400px;
+width:350px;
+height:100%;
+background:white;
+box-shadow:-5px 0 15px rgba(0,0,0,0.2);
+padding:20px;
+transition:0.3s;
+z-index:9999;
+}
+
+.item{
+border-bottom:1px solid #ddd;
+padding:10px 0;
+}
+
+.total{
+margin-top:15px;
+font-size:20px;
+font-weight:bold;
+}
+
+.btn-fechar{
+margin-top:10px;
+width:100%;
+padding:10px;
+border:none;
+background:red;
+color:white;
+border-radius:8px;
+cursor:pointer;
+}
+
+.btn-finalizar{
+margin-top:10px;
+width:100%;
+padding:12px;
+border:none;
+background:#25d366;
+color:white;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">🛠️ GS MOVEIS</div>
+
+<div class="carrinho" onclick="abrirCarrinho()">
+🛒 Itens: <span id="contador">0</span>
+</div>
+</header>
+
+<section class="banner">
+<h1>MOVEIS DIVERSOS</h1>
+<p>Guarda-roupas, Estantes, Armarios, Sapateiras, Entre outros</p>
+</section>
+
+<section class="produtos">
+
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL6rC83C4g3bSBEnY8KCzjWFKOlXgsndSkKjFH5wf4yA&s=10">
+<div class="card-body">
+<h3>Guarda Roupa Casal 6 Portas</h3>
+<div class="preco">R$ 679,90</div>
+
+<button class="btn btn-carrinho"
+onclick="adicionar('Guarda Roupa Casal 6 Portas',679.90)">
+Adicionar ao Carrinho
+</button>
+
+</div>
+</div>
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQH2duJI2S_TmfHTtoMOlWeg1xGHfC79n7orAI1jEKkew&s">
+<div class="card-body">
+<h3>Guarda Roupa Casal 4 Portas</h3>
+<div class="preco">R$ 499,90</div>
+
+<button class="btn btn-carrinho"
+onclick="adicionar('Guarda Roupa Casal 4 Portas',499.90)">
+Adicionar ao Carrinho
+</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnmGMy9XckHwdk5-9_6DZ11Js1a2Pi9QtOmlOBVPNMxg&s=10">
+<div class="card-body">
+<h3>Guarda Roupa 2 portas</h3>
+<div class="preco">R$ 109,90</div>
+
+<button class="btn btn-carrinho"
+onclick="adicionar('Guarda Roupa 2 Portas',109.90)">
+Adicionar ao Carrinho
+</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTIxcRkRPfL9lxK2tFMity4eKdyvR12qMEVw0EvUt8Nw&s=10">
+<div class="card-body">
+<h3>Guarda Roupa Premium</h3>
+<div class="preco">R$ 799,90</div>
+
+<button class="btn btn-carrinho"
+onclick="adicionar('Guarda Roupa Premium',799.90)">
+Adicionar ao Carrinho
+</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-M88xmF4c__h88dfD49Vmj4ok-PSWtFrhe97cQ-7NiA&s=10">
+<div class="card-body">
+<h3>Cômoda 5 Gavetas</h3>
+<div class="preco">R$ 499,90</div>
+
+<button class="btn btn-carrinho"
+onclick="adicionar('Cômoda 5 Gavetas',499.90)">
+Adicionar ao Carrinho
+</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUuZ1Q2zDenMJLhzpfqSRQRxFKIEpBv7fAe7nx2EgYdA&s=10">
+<div class="card-body">
+<h3>Cômoda Premium</h3>
+<div class="preco">R$ 599,90</div>
+
+<button class="btn btn-carrinho"
+onclick="adicionar('Cômoda Premium',599.90)">
+Adicionar ao Carrinho
+</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_mijbkgiuRKmLky3Zk6xl8hlvNXjqTPB8vmQXYzGHDw&s=10">
+<div class="card-body">
+<h3>Sapateira 20 Pares</h3>
+<div class="preco">R$ 349,90</div>
+
+<button class="btn btn-carrinho"
+onclick="adicionar('Sapateira 20 Pares',349.90)">
+Adicionar ao Carrinho
+</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTer1dqoK8bLx5JLc1KsiHwv1RBKIRNPO7U9SATe-g5kw&s=10">
+<div class="card-body">
+<h3>Sapateira Luxo</h3>
+<div class="preco">R$ 399,90</div>
+
+<button class="btn btn-carrinho"
+onclick="adicionar('Sapateira Luxo',399.90)">
+Adicionar ao Carrinho
+</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScGxE_rpH3DH5ArO8hWw7sShmA-7Xh6XYaSMUgOO5ULQ&s=10">
+<div class="card-body">
+<h3>Gabinete Suspenso</h3>
+<div class="preco">R$ 449,90</div>
+
+<button class="btn btn-carrinho"
+onclick="adicionar('Gabinete Suspenso',449.90)">
+Adicionar ao Carrinho
+</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4a3hBMRGzUvEeU1X3D8UxlC61ZdpRFq7ae2LykbpAfA&s=10">
+<div class="card-body">
+<h3>Gabinete com Espelho</h3>
+<div class="preco">R$ 499,90</div>
+
+<button class="btn btn-carrinho"
+onclick="adicionar('Gabinete com Espelho',499.90)">
+Adicionar ao Carrinho
+</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsr4rpB9MLE-Pt7_6zSKdPpjHG7v_Ele1VpVYp_aV0dA&s=10">
+<div class="card-body">
+<h3>Armário de Cozinha</h3>
+<div class="preco">R$ 699,90</div>
+
+<button class="btn btn-carrinho"
+onclick="adicionar('Armário de Cozinha',699.90)">
+Adicionar ao Carrinho
+</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxvevhNyL0quPiAg3x80w7wfBet2eRQE2X2eNvJ_C3hw&s=10">
+<div class="card-body">
+<h3>Armário Multiuso</h3>
+<div class="preco">R$ 349,90</div>
+
+<button class="btn btn-carrinho"
+onclick="adicionar('Armário Multiuso',349.90)">
+Adicionar ao Carrinho
+</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOv4XnVg7LgVBKuxXZnABiVYIO0pXRSQJ2tdiBEoI6tg&s=10">
+<div class="card-body">
+<h3>Armário Premium</h3>
+<div class="preco">R$ 899,90</div>
+
+<button class="btn btn-carrinho"
+onclick="adicionar('Armário Premium',899.90)">
+Adicionar ao Carrinho
+</button>
+</div>
+</div>
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCZ6T4YhrXHdLjBJp_42SUYIJYrjANAgopulV7pjMUeg&s=10">
+<div class="card-body">
+<h3>Closet Roupas</h3>
+<div class="preco">R$ 399,70</div>
+
+<button class="btn btn-carrinho"
+onclick="adicionar('Closet Roupas',399.70)">
+Adicionar ao Carrinho
+</button>
+
+</div>
+</div>
+
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxpQFNmKGOxnwTg5RqG6_IrDlXet7dU7VUKN4i_Ex9Ug&s=10">
+<div class="card-body">
+<h3>Sofá Pequeno</h3>
+<div class="preco">R$ 259,70</div>
+<button class="btn btn-carrinho"
+onclick="adicionar('Sofá Pequeno',259.70)">
+Adicionar ao Carrinho
+</button>
+
+</div>
+</div>
+
+<div class="card">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuV-mzMm_THD9uYhvmqbUHmt2qlg5D50QdMGI211xUcg&s=10">
+<div class="card-body">
+<h3>Sofá Grande</h3>
+<div class="preco">R$ 499,90</div>
+
+<button class="btn btn-carrinho"
+onclick="adicionar('Sofá Grande',499.90)">
+Adicionar ao Carrinho
+</button>
+
+</div>
+</div>
+
+</section>
+
+<footer>
+GS MOVEIS © 2026
+</footer>
+
+<!-- CARRINHO -->
+<div id="carrinhoLateral">
+
+<h2>🛒 Meu Carrinho</h2>
+
+<div id="lista"></div>
+
+<div class="total" id="total">Total: R$ 0,00</div>
+
+<button class="btn-fechar" onclick="fecharCarrinho()">Fechar</button>
+
+<button class="btn-finalizar" onclick="finalizarPedido()">
+ <a href="https://wa.me/5516988735709?text=Olá!%20quero%20finalizar%20meu%20pedido" target="_blank"> 
+  Finalizar no WhatsApp
+</a>
+</button> 
+</script>
+
+</div>
+
+<script>
+
+let carrinho = [];
+let contador = 0;
+
+function adicionar(nome, preco){
+
+carrinho.push({nome, preco});
+contador++;
+
+document.getElementById("contador").innerText = contador;
+
+atualizarCarrinho();
+
+}
+
+function removerItem(index){
+
+carrinho.splice(index,1);
+contador--;
+
+document.getElementById("contador").innerText = contador;
+
+atualizarCarrinho();
+
+}
+
+function atualizarCarrinho(){
+
+let lista = document.getElementById("lista");
+let total = 0;
+
+lista.innerHTML = "";
+
+carrinho.forEach((item, index) => {
+
+lista.innerHTML += `
+<div class="item">
+<b>${item.nome}</b><br>
+R$ ${item.preco.toFixed(2)}
+
+<br>
+<button onclick="removerItem(${index})"
+style="margin-top:8px;background:red;color:white;border:none;padding:5px 10px;border-radius:5px;cursor:pointer;">
+Remover
+</button>
+</div>
+`;
+
+total += item.preco;
+
+});
+
+document.getElementById("total").innerText =
+"Total: R$ " + total.toFixed(2);
+
+}
+
+function abrirCarrinho(){
+document.getElementById("carrinhoLateral").style.right = "0";
+}
+
+function fecharCarrinho(){
+document.getElementById("carrinhoLateral").style.right = "-400px";
+}
+
+function finalizarPedido(){
+
+let msg = "Olá! Quero finalizar meu pedido:%0A%0A";
+let total = 0;
+
+carrinho.forEach(item => {
+msg += "- " + item.nome + " R$ " + item.preco.toFixed(2) + "%0A";
+total += item.preco;
+});
+
+msg += "%0ATotal: R$ " + total.toFixed(2);
+
+window.open("https://wa.me/5511999999999?text=" + msg, "_blank");
+
+}
+
+</script>
